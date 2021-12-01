@@ -1,13 +1,14 @@
 import { GameImage, Lens, LensDD, DDItem } from './styles';
 import { useState } from 'react';
-import { createLevelImage } from '../utils';
+import { useParams } from 'react-router-dom';
+import { createLevelImages } from '../utils';
 
 
 const GameContainer = () => {
+  const { levelNum } = useParams();
+
   const [isClicked, setIsClicked] = useState(false);
   const [pos, setPos] = useState({ x: null, y: null });
-
-  const [imgs, setImgs] = useState([]);
 
   const handleClick = (e) => {
     setIsClicked(!isClicked);
@@ -17,19 +18,10 @@ const GameContainer = () => {
     });
   };
 
-  async function test() {
-    const imgElements = await createLevelImage(1);
-    setImgs(imgElements);
-  }
-
   const options = ['Hello', 'World', 'Woof'];
 
   return (
     <GameImage onClick={handleClick}>
-      <span onClick={test}>test</span>
-      {
-        imgs
-      }
       {
         isClicked && [
           <Lens key='0' left={pos.x - 15} top={pos.y - 15} />,

@@ -1,12 +1,15 @@
 import Navbar from './Navbar/Navbar';
-import Content from './Content/Content';
+
+import { Outlet } from 'react-router-dom';
 
 
-function App() {
+const App = () => {
   return (
     <div>
       <Navbar />
-      <Content />      
+      <div>
+        <Outlet />
+      </div>
     </div>
   );
 }

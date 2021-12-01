@@ -33,14 +33,4 @@ async function createLevelImages() {
 }
 
 
-
-async function createLevelImage(level) {
-  const imagesURL = await fetchLevelImageURL(Number.parseInt(level));
-  return imagesURL.map(url => <img src={url} alt='puzzle game and characters' />);
-}
-
-
-
-
-
-export { createLevelImage, createLevelImages };
+export { createLevelImages };

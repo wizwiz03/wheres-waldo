@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom';
 
 import { app } from './firebase.config';
 
-import App from './components/App';
+import RouteSwitch from './components/RouteSwitch';
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <RouteSwitch />
   </React.StrictMode>,
   document.getElementById('root')
 );

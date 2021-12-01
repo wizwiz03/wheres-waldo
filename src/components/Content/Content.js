@@ -1,5 +1,4 @@
 import { OuterContent } from './styles';
-import GameContainer from './GameContainer/GameContainer';
 import LevelPicker from './LevelPicker/LevelPicker';
 
 const Content = () => {
