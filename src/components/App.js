@@ -1,11 +1,10 @@
-import '../styles/App.css';
-import Navbar from './Navbar';
-import Content from './Content';
+import Navbar from './Navbar/Navbar';
+import Content from './Content/Content';
 
 
 function App() {
   return (
-    <div className='app'>
+    <div>
       <Navbar />
       <Content />      
     </div>

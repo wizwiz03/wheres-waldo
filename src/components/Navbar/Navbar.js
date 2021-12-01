@@ -1,12 +1,12 @@
-import '../styles/Navbar.css';
+import { NavbarCont } from './styles';
 
 const Navbar = () => {
   return (
-    <div className='navbar'>
+    <NavbarCont>
       <div className='logo'>Where's Waldo</div>
       <button>Link-1</button>
       <button>Link-2</button>
-    </div>
+    </NavbarCont>
   );
 }
 
