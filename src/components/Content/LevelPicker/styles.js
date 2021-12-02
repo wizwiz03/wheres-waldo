@@ -10,7 +10,6 @@ const LevelCard = styled.div`
   border: 2px solid black;
   width: 300px;
   height: 200px;
-  display: flex;
   overflow: hidden;
   &:hover {
     box-shadow: 0px 0px 20px 0px rgb(185 39 177 / 88%);

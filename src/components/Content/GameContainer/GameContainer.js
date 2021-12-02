@@ -1,36 +1,67 @@
-import { GameImage, Lens, LensDD, DDItem } from './styles';
-import { useState } from 'react';
+import { FlexContainer, GameImage, Lens, LensDD, DDItem, Marker } from './styles';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { createLevelImages } from '../utils';
+import { createSingleLevel, checkSolution, getCharacters } from '../utils';
 
 
 const GameContainer = () => {
   const { levelNum } = useParams();
 
+  const [img, setImg] = useState();
+  const [characters, setCharacters] = useState();
   const [isClicked, setIsClicked] = useState(false);
-  const [pos, setPos] = useState({ x: null, y: null });
+  const [lensPos, setLensPos] = useState({ x: null, y: null });
+  const [offset, setOffset] = useState({ x: null, y: null });
+  const [markers, setMarker] = useState([]);
 
-  const handleClick = (e) => {
-    setIsClicked(!isClicked);
-    setPos({
-      x: e.pageX,
-      y: e.pageY,
-    });
+  const handleDDItem = async (e) => {
+    const foundChar = await checkSolution(e.target.textContent, offset.x, offset.y);
+    if (foundChar) {
+      setMarker([
+        ...markers,
+        { x: e.pageX, y: e.pageY }
+      ]);
+    }
+    else {
+      console.log('TRY AGAIN');
+    }
   };
 
-  const options = ['Hello', 'World', 'Woof'];
+  const handleClick = (e) => {
+    if (!isClicked) {
+      setLensPos({
+        x: e.pageX,
+        y: e.pageY,
+      });
+      setOffset({
+        x: e.nativeEvent.offsetX,
+        y: e.nativeEvent.offsetY,
+      });
+    } 
+    setIsClicked(!isClicked);
+  };
+
+  useEffect(() => {
+    createSingleLevel(levelNum)
+      .then(image => setImg(<img src={image.url} alt={image.alt} />));
+    getCharacters().then(names => setCharacters(names));
+  }, []);
 
   return (
-    <GameImage onClick={handleClick}>
-      {
-        isClicked && [
-          <Lens key='0' left={pos.x - 15} top={pos.y - 15} />,
-          <LensDD key='1' left={pos.x + 25} top={pos.y - 15}>
-            {options.map(name => <DDItem key={name}>{name}</DDItem>)}
-          </LensDD>
-        ]
-      }
-    </GameImage>
+    <FlexContainer>
+      <GameImage onClick={handleClick} >
+        {img}
+        {
+          isClicked && [
+            <Lens key='0' left={lensPos.x - 20} top={lensPos.y - 20} />,
+            <LensDD key='1' left={lensPos.x + 30} top={lensPos.y - 15}>
+              {characters.map(name => <DDItem onClick={handleDDItem} key={name}>{name}</DDItem>)}
+            </LensDD>
+          ]
+        }
+        {markers.map((marker, i) => <Marker left={marker.x - 20} top={marker.y - 20} key={i} />)}
+      </GameImage>
+    </FlexContainer>
   );
 };
 
