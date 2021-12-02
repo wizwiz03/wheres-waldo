@@ -16,5 +16,10 @@ const LevelCard = styled.div`
   }
 `;
 
+const ImgPreview = styled.img`
+  height: 100%;
+  width: 100%;
+`;
 
-export { LevelPickerContainer, LevelCard };
+
+export { LevelPickerContainer, LevelCard, ImgPreview };
