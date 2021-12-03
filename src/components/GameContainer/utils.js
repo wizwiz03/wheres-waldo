@@ -34,10 +34,4 @@ async function createSingleLevel(lv) {
   return { url: imageURL, alt: 'placeholder' };
 }
 
-async function createAllLevels() {
-  const imagesURL = await Promise.all(['01', '02'].map(lv => fetchLevelImageURL(lv, 'img')));
-  return imagesURL;
-}
-
-
-export { createAllLevels, createSingleLevel, checkSolution, getCharacters };
+export { createSingleLevel, checkSolution, getCharacters };

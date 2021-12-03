@@ -1,15 +1,15 @@
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
 
 import App from './App';
-import Content from './Content/Content';
-import GameContainer from './Content/GameContainer/GameContainer';
+import LevelPicker from './LevelPicker/LevelPicker';
+import GameContainer from './GameContainer/GameContainer';
 
 const RouteSwitch = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<App />}>
-          <Route index element={<Content />} />
+          <Route index element={<LevelPicker />} />
           <Route path='level/:levelNum' element={<GameContainer />} />
           <Route
               path="*"
