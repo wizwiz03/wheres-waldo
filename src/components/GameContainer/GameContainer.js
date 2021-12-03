@@ -2,6 +2,7 @@ import { FlexContainer, GameImage, Lens, LensDD, DDItem, Marker } from './styles
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { createSingleLevel, checkSolution, getCharacters } from './utils';
+import Timer from '../Timer/Timer';
 
 
 const GameContainer = () => {
@@ -49,6 +50,7 @@ const GameContainer = () => {
 
   return (
     <FlexContainer>
+      <Timer />
       <GameImage onClick={handleClick} >
         {img}
         {

@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route} from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import App from './App';
 import LevelPicker from './LevelPicker/LevelPicker';
@@ -11,15 +11,8 @@ const RouteSwitch = () => {
         <Route path='/' element={<App />}>
           <Route index element={<LevelPicker />} />
           <Route path='level/:levelNum' element={<GameContainer />} />
-          <Route
-              path="*"
-              element={
-                <main style={{ padding: "1rem" }}>
-                  <p>There's nothing here!</p>
-                </main>
-              }
-            />
-          </Route>
+          <Route path="*" element={<main><p>There's nothing here!</p></main>} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
