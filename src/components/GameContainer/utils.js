@@ -1,6 +1,6 @@
 import { storage, db } from '../../firebase.config';
 import { getDownloadURL, ref } from 'firebase/storage';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 
 
 async function checkSolution(character, x, y) {
@@ -34,4 +34,15 @@ async function createSingleLevel(lv) {
   return { url: imageURL, alt: 'placeholder' };
 }
 
-export { createSingleLevel, checkSolution, getCharacters };
+
+
+/******************************************************************************** */
+
+async function saveToLeaderboard(name, time) {
+  const rankingsRef = doc(db, 'leaderboard', 'rankings');
+  await setDoc(rankingsRef, { [name]: time }, { merge: true });
+}
+
+
+
+export { createSingleLevel, checkSolution, getCharacters, saveToLeaderboard };
